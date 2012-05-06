@@ -9,7 +9,8 @@ DISTCLEANFILES  =
 BUILT_SOURCES   =
 
 SUBDIRS         =				\
-	src
+	src					\
+	test
 
 EXTRA_DIST     =				\
 	build-aux/git-version-gen		\
