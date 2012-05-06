@@ -15,7 +15,8 @@ EXTRA_DIST     =				\
 	build-aux/git-version-gen		\
 	build-aux/gitlog-to-changelog		\
 	BUGS					\
-	NEWS
+	NEWS					\
+	.changelog-amend
 
 .PHONY: AUTHORS
 AUTHORS:
