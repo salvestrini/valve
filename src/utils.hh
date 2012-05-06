@@ -19,7 +19,8 @@ public:
 
         ~timedelta() {
                 time(&end);
-                std::cout << "elapsed " << difftime(end, start) << std::endl;
+                std::cout << "elapsed " << difftime(end, start) << " seconds"
+                          << std::endl;
         }
 
 private:
