@@ -9,6 +9,7 @@
 
 #include <ctime>
 
+void bug();
 void bug(const std::string & message);
 
 class timedelta {

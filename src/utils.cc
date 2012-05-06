@@ -12,14 +12,18 @@
 #include <iostream>
 #include <cstdlib>
 
-void bug(const std::string & message)
+void bug()
 {
-        std::cerr << message << std::endl;
         std::cerr << "Please report this bug to "
                   << "<" << PACKAGE_BUGREPORT << ">"
                   << std::endl;
+        abort();
+}
 
-        exit(EXIT_FAILURE);
+void bug(const std::string & message)
+{
+        std::cerr << message << std::endl;
+        bug();
 }
 
 #endif
