@@ -106,7 +106,7 @@ int main(int argc, char * argv[])
 
                 opterr = 0;
                 while ((opt = getopt_long(argc, argv,
-                                          "hVv",
+                                          "hVvd",
                                           long_options, &opt_index)) != -1) {
                         switch (opt) {
                                 case 'h':
