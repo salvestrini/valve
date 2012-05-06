@@ -7,4 +7,5 @@
 bin_PROGRAMS = valve
 
 valve_SOURCES =					\
-	valve.cc
+	valve.cc				\
+	defs.h
