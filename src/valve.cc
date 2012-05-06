@@ -20,36 +20,32 @@
 #include "cfgraph.hh"
 #include "bytecode.hh"
 
+#ifdef DEBUG
+#define DUMP_ELAPSED(MSG, CODE) {               \
+                timedelta delta(MSG);           \
+                CODE ;                          \
+        }
+#else
+#define DUMP_ELAPSED(MSG, CODE) {               \
+                CODE ;                          \
+        }
+#endif
+
 void handle(const std::string & filename)
 {
         ptree p;
-        {
-                timedelta delta("parse-tree");
-                p.parse(filename);
-        }
+        DUMP_ELAPSED("parse-tree", p.parse(filename));
 
         ast a;
-        {
-                timedelta delta("abstract-syntax-tree");
-                a = p.transform();
-        }
+        DUMP_ELAPSED("abstract-syntax-tree", a = p.transform());
 
         cfgraph c;
-        {
-                timedelta delta("control-flow-graph");
-                c = a.transform();
-        }
+        DUMP_ELAPSED("control-flow-graph", c = a.transform())
 
         bytecode b;
-        {
-                timedelta delta("bytecode-compile");
-                b = c.transform();
-        }
+        DUMP_ELAPSED("bytecode-compile", b = c.transform());
 
-        {
-                timedelta delta("bytecode-run");
-                b.run();
-        }
+        DUMP_ELAPSED("bytecode-run", b.run());
 }
 
 static std::string version()
