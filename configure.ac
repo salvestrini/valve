@@ -37,6 +37,14 @@ AC_PROG_CXX
 AC_PROG_CXX_C_O
 AC_PROG_RANLIB
 
+# Checks
+AC_CHECK_HEADERS([getopt.h],,[
+    AC_MSG_ERROR([headee getopt.h seems missing])
+])
+AC_CHECK_FUNCS([getopt_long],,[
+    AC_MSG_ERROR([library function gentopt_long seems missing])
+])
+
 AC_CONFIG_FILES([
     Makefile
 
