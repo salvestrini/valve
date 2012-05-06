@@ -13,19 +13,22 @@ void bug(const std::string & message);
 
 class timedelta {
 public:
-        timedelta() {
-                time(&start);
+        timedelta(const std::string & prefix) :
+                prefix_(prefix) {
+                time(&start_);
         }
 
         ~timedelta() {
-                time(&end);
-                std::cout << "elapsed " << difftime(end, start) << " seconds"
+                time(&end_);
+                std::cout << prefix_ << ": "
+                          << "elapsed " << difftime(end_, start_) << " seconds"
                           << std::endl;
         }
 
 private:
-        time_t start;
-        time_t end;
+        std::string prefix_;
+        time_t      start_;
+        time_t      end_;
 };
 
 #endif

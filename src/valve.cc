@@ -14,6 +14,9 @@
 
 #include "defs.hh"
 #include "utils.hh"
+#include "ptree.hh"
+#include "ast.hh"
+#include "bytecode.hh"
 
 static std::string version()
 {
@@ -45,11 +48,34 @@ static void help()
 
 void handle(const std::string & filename)
 {
-        timedelta delta;
+        ptree p;
+        {
+                timedelta delta("parse-tree");
+                p.parse(filename);
+        }
 
-        std::cout << "handling "
-                  << "`" << filename << "'"
-                  << std::endl;
+        ast a;
+        {
+                timedelta delta("abstract-syntax-tree");
+                a = p.transform();
+        }
+
+        cfg c;
+        {
+                timedelta delta("control-flow-graph");
+                c = a.transform();
+        }
+
+        bytecode b;
+        {
+                timedelta delta("bytecode-compile");
+                b = c.transform();
+        }
+
+        {
+                timedelta delta("bytecode-run");
+                b.run();
+        }
 }
 
 int main(int argc, char * argv[])
