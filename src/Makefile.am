@@ -7,6 +7,6 @@
 bin_PROGRAMS = valve
 
 valve_SOURCES =					\
-	utils.cc utils.h			\
-	defs.h					\
+	utils.cc utils.hh			\
+	defs.hh					\
 	valve.cc

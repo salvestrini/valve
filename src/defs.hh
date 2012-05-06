@@ -4,9 +4,9 @@
 // (C) 2012 Francesco Salvestrini <salvestrini AT gmail DOT com>
 //
 
-#ifndef VALVE_UTILS_H
-#define VALVE_UTILS_H
+#ifndef VALVE_DEFS_HH
+#define VALVE_DEFS_HH
 
-void bug(const std::string & message);
+#define PROGRAM_NAME "valve"
 
 #endif

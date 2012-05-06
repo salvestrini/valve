@@ -12,8 +12,8 @@
 
 #include <getopt.h>
 
-#include "defs.h"
-#include "utils.h"
+#include "defs.hh"
+#include "utils.hh"
 
 static std::string version()
 {
@@ -78,6 +78,8 @@ int main(int argc, char * argv[])
                 }
 
                 while (optind < argc) {
+                        timedelta delta;
+
                         std::string filename(argv[optind++]);
                         std::cout << "handling "
                                   << "`" << filename << "'"
