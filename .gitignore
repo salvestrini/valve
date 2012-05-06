@@ -1,13 +1,42 @@
-# http://www.gnu.org/software/automake
+*~
+*.swp
 
+*.orig
+
+.deps
+.libs
+.dirstamp
+.svn
+.directory
+
+/.version
+/.tarball-version
+
+/AUTHORS
+/ChangeLog
+
+Makefile
 Makefile.in
 
-# http://www.gnu.org/software/autoconf
+autom4te.cache
+aclocal.m4
+configure
+config.log
+config.status
+libtool
+stamp-h1
 
-/autom4te.cache
-/aclocal.m4
-/compile
-/configure
-/depcomp
-/install-sh
-/missing
+*.[ao]
+
+/*.tar.gz
+
+/nsis-ka/protlib/config.h
+/nsis-ka/natfw-nslp/src/natfwd
+/nsis-ka/natfw-nslp/src/test_client
+/nsis-ka/natfw-nslp/src/test_stress
+/nsis-ka/natfw-nslp/src/test_stress2
+/nsis-ka/ntlp/src/gistka
+/nsis-ka/qos-nslp/src/auth-client
+/nsis-ka/qos-nslp/src/client
+/nsis-ka/qos-nslp/src/qosnslpd
+/nsis-ka/qos-nslp/src/vlsp-client

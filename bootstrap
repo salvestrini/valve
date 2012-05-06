@@ -1,0 +1,23 @@
+#!/bin/sh
+# -*- sh -*-
+
+#
+# bootstrap
+#
+# (C) 2012 Francesco Salvestrini <salvestrini AT gmail DOT com>
+#
+
+ME=bootstrap
+
+DIRS=". `cat configure.ac|grep AC_CONFIG_SUBDIRS|sed -e 's,^.*\[,,' -e 's,\].*,,'`"
+
+echo "${ME}: Bootstrapping $DIRS"
+
+for i in $DIRS ; do
+    echo "${ME}: Bootstrapping directory $PWD"
+    (cd $i && autoreconf -i -f -Wall $@) || exit 1
+done
+
+echo "${ME}: Done"
+
+exit 0
