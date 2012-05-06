@@ -16,6 +16,7 @@
 #include "utils.hh"
 #include "ptree.hh"
 #include "ast.hh"
+#include "cfgraph.hh"
 #include "bytecode.hh"
 
 static std::string version()
@@ -60,7 +61,7 @@ void handle(const std::string & filename)
                 a = p.transform();
         }
 
-        cfg c;
+        cfgraph c;
         {
                 timedelta delta("control-flow-graph");
                 c = a.transform();

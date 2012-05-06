@@ -7,14 +7,14 @@
 #ifndef VALVE_AST_HH
 #define VALVE_AST_HH
 
-#include "cfg.hh"
+#include "cfgraph.hh"
 
 class ast {
 public:
         ast()  { }
         ~ast() { }
 
-        cfg transform() { }
+        cfgraph transform() { }
 };
 
 #endif

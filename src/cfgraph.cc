@@ -4,4 +4,4 @@
 // (C) 2012 Francesco Salvestrini <salvestrini AT gmail DOT com>
 //
 
-#include "cfg.hh"
+#include "cfgraph.hh"

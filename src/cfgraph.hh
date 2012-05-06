@@ -4,15 +4,15 @@
 // (C) 2012 Francesco Salvestrini <salvestrini AT gmail DOT com>
 //
 
-#ifndef VALVE_CFG_HH
-#define VALVE_CFG_HH
+#ifndef VALVE_CFGRAPH_HH
+#define VALVE_CFGRAPH_HH
 
 #include "bytecode.hh"
 
-class cfg {
+class cfgraph {
 public:
-        cfg()  { }
-        ~cfg() { }
+        cfgraph()  { }
+        ~cfgraph() { }
 
         bytecode transform() { }
 };
