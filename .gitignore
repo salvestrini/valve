@@ -26,17 +26,4 @@ config.status
 libtool
 stamp-h1
 
-*.[ao]
-
 /*.tar.gz
-
-/nsis-ka/protlib/config.h
-/nsis-ka/natfw-nslp/src/natfwd
-/nsis-ka/natfw-nslp/src/test_client
-/nsis-ka/natfw-nslp/src/test_stress
-/nsis-ka/natfw-nslp/src/test_stress2
-/nsis-ka/ntlp/src/gistka
-/nsis-ka/qos-nslp/src/auth-client
-/nsis-ka/qos-nslp/src/client
-/nsis-ka/qos-nslp/src/qosnslpd
-/nsis-ka/qos-nslp/src/vlsp-client
