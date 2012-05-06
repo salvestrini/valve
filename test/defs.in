@@ -1,0 +1,109 @@
+#!@SHELL@
+# -*- shell -*-
+
+#
+# defs
+#
+# (C) 2012 Francesco Salvestrini <salvestrini AT gmail DOT com>
+#
+
+# Be Bourne compatible.
+# (Snippet copied from configure's initialization in Autoconf 2.57.)
+if test -n "${ZSH_VERSION+set}" && (emulate sh) >/dev/null 2>&1; then
+  emulate sh
+  NULLCMD=:
+  # Zsh 3.x and 4.x performs word splitting on ${1+"$@"}, which
+  # is contrary to our usage.  Disable this feature.
+  alias -g '${1+"$@"}'='"$@"'
+elif test -n "${BASH_VERSION+set}" && (set -o posix) >/dev/null 2>&1; then
+  set -o posix
+fi
+
+# Ensure we are running from the right directory.
+test -f ./defs || {
+   echo "defs: not found in current directory" 1>&2
+   exit 1
+}
+
+# If srcdir is not set, then we are not running from `make check', be verbose.
+if test -z "$srcdir"; then
+   test -z "$VERBOSE" && VERBOSE=x
+   # compute $srcdir.
+   srcdir=`echo "$0" | @SED@ -e 's,/[^\\/]*$,,'`
+   test $srcdir = $0 && srcdir=.
+fi
+
+# Ensure $srcdir is set correctly.
+test -f $srcdir/defs.in || {
+   echo "$srcdir/defs.in not found, check \$srcdir" 1>&2
+   exit 1
+}
+
+me=`echo "$0" | @SED@ -e 's,.*[\\/],,;s/\.test$//'`
+
+# See how redirections should work.  User can set VERBOSE to see all
+# output.
+test -z "$VERBOSE" && {
+   exec > /dev/null 2>&1
+}
+
+DIFF=@DIFF@
+SED=@SED@
+GREP=@GREP@
+CUT=@CUT@
+TAIL=@TAIL@
+HEAD=@HEAD@
+
+# Make sure we override the user shell.
+SHELL='@SHELL@'
+export SHELL
+
+PATH=`pwd`:$PATH
+echo $PATH
+
+FLAGS=""
+
+test -n "$DEBUG" && FLAGS="$FLAGS --debug"
+
+test -z "$VALVE" && SVCMGRD="@abs_top_builddir@/src/valve $FLAGS"
+
+# Always use an absolute srcdir.  Otherwise symlinks made in subdirs
+# of the test dir just won't work.
+case "$srcdir" in
+ [\\/]* | ?:[\\/]*)
+    ;;
+
+ *)
+    srcdir=`CDPATH=: && cd "$srcdir" && pwd`
+    ;;
+esac
+
+testname=`basename $0 .test`
+chmod -R a+rwx test-SUBDIR-$testname > /dev/null 2>&1
+rm -rf test-SUBDIR-$testname > /dev/null 2>&1
+mkdir test-SUBDIR-$testname
+
+echo "=== Running test $0"
+# Copy in some files we need.
+if test -n "$datadir"
+then
+  echo "$me: copying test data directory..."
+  if test ! -d $srcdir/$datadir ; then
+    echo "$me: datadir $datadir not found" 1>&2
+    exit 1
+  fi
+  cp -R $srcdir/$datadir/* ./test-SUBDIR-$testname
+fi
+chmod -R a+rw ./test-SUBDIR-$testname
+
+# Then jump into the created directory
+cd ./test-SUBDIR-$testname
+
+# Turn on shell traces when VERBOSE=x.
+if test "x$VERBOSE" = xx; then
+  set -x
+else
+  :
+fi
+
+pwd

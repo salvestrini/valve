@@ -32,6 +32,11 @@ AC_PATH_PROG([SORT], [sort], [/bin/false])
 AC_PATH_PROG([UNIQ], [uniq], [/bin/false])
 AC_PATH_PROG([GIT],  [git],  [/bin/false])
 
+AC_PATH_PROG([DIFF], [diff], [/bin/false])
+AC_PATH_PROG([CUT],  [cut],  [/bin/false])
+AC_PATH_PROG([HEAD], [head], [/bin/false])
+AC_PATH_PROG([TAIL], [tail], [/bin/false])
+
 AC_PROG_CXXCPP
 AC_PROG_CXX
 AC_PROG_CXX_C_O
