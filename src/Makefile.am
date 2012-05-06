@@ -7,6 +7,7 @@
 bin_PROGRAMS = valve
 
 valve_SOURCES =					\
+	options.cc   options.hh			\
 	utils.cc     utils.hh			\
 	ptree.cc     ptree.hh			\
 	cfgraph.cc   cfgraph.hh			\

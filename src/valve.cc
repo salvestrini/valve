@@ -13,39 +13,12 @@
 #include <getopt.h>
 
 #include "defs.hh"
+#include "options.hh"
 #include "utils.hh"
 #include "ptree.hh"
 #include "ast.hh"
 #include "cfgraph.hh"
 #include "bytecode.hh"
-
-static std::string version()
-{
-        std::stringstream ss;
-        ss << PACKAGE_NAME << " " << PACKAGE_VERSION;
-        return ss.str();
-}
-
-static void hint(const std::string & message)
-{
-        std::cerr << PROGRAM_NAME << ": " << message << std::endl;
-        std::cerr << "Try `" << PROGRAM_NAME << " --help' for "
-                  << "more information." << std::endl;
-}
-
-static void help()
-{
-        std::cout << "Usage: " << PROGRAM_NAME << " [OPTION].. [FILE]..."
-                  << std::endl;
-        std::cout << std::endl;
-        std::cout << "  -h, --help       print this help, then exit"
-                  << std::endl;
-        std::cout << "  -V, --version    print version, then exit"
-                  << std::endl;
-        std::cout << std::endl;
-        std::cout << "Report bugs to <" << PACKAGE_BUGREPORT << ">"
-                  << std::endl;
-}
 
 void handle(const std::string & filename)
 {
@@ -79,13 +52,53 @@ void handle(const std::string & filename)
         }
 }
 
+static std::string version()
+{
+        std::stringstream ss;
+        ss << PACKAGE_NAME << " " << PACKAGE_VERSION;
+        return ss.str();
+}
+
+static void hint(const std::string & message)
+{
+        std::cerr << PROGRAM_NAME << ": " << message << std::endl;
+        std::cerr << "Try `" << PROGRAM_NAME << " --help' for "
+                  << "more information." << std::endl;
+}
+
+static void help()
+{
+        std::cout << "Usage: " << PROGRAM_NAME << " [OPTION].. [FILE]..."
+                  << std::endl;
+        std::cout << std::endl;
+        std::cout << "  -h, --help       print this help, then exit"
+                  << std::endl;
+        std::cout << "  -V, --version    print version, then exit"
+                  << std::endl;
+        std::cout << "  -v, --verbose    enable verbose logs"
+                  << std::endl
+                  << "                   can be supplied multiple times to "
+                  << "increase verbosity"
+                  << std::endl;
+        std::cout << "  -d, --debug      enable debugging logs"
+                  << std::endl
+                  << "                   can be supplied multiple times to "
+                  << "increase debugging"
+                  << std::endl;
+        std::cout << std::endl;
+        std::cout << "Report bugs to <" << PACKAGE_BUGREPORT << ">"
+                  << std::endl;
+}
+
 int main(int argc, char * argv[])
 {
         try {
                 struct option long_options[] = {
-                        {"help",    no_argument, 0, 'h'},
-                        {"version", no_argument, 0, 'V'},
-                        {0,         0,           0, 0}
+                        { "help",    no_argument, 0, 'h' },
+                        { "version", no_argument, 0, 'V' },
+                        { "verbose", no_argument, 0, 'v' },
+                        { "debug",   no_argument, 0, 'd' },
+                        { 0,         0,           0, 0   }
                 };
 
                 int opt       = 0;
@@ -93,7 +106,7 @@ int main(int argc, char * argv[])
 
                 opterr = 0;
                 while ((opt = getopt_long(argc, argv,
-                                          "hV",
+                                          "hVv",
                                           long_options, &opt_index)) != -1) {
                         switch (opt) {
                                 case 'h':
@@ -102,6 +115,12 @@ int main(int argc, char * argv[])
                                 case 'V':
                                         std::cout << version() << std::endl;
                                         return EXIT_SUCCESS;
+                                case 'v':
+                                        verbose++;
+                                        break;
+                                case 'd':
+                                        debug++;
+                                        break;
                                 default:
                                         hint("unknown argument");
                                         return EXIT_FAILURE;
