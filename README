@@ -1,2 +1,32 @@
 valve
 =====
+
+Installation
+------------
+
+    1. ./configure --prefix=<your prefix>
+    2. make install
+
+Usage
+-----
+
+    $ valve
+
+Testing
+-------
+
+To run the tests:
+
+    $ make check
+
+To add tests see the Makefile.am in tests directory
+
+Contributing
+------------
+
+1. Fork the repository
+2. Create a branch (`git checkout -b my_changes`)
+3. Commit your changes (`git commit -am "My changes"`)
+4. Push to the branch (`git push origin my_changes`)
+5. Create an issue with a link to your branch
+6. Wait
