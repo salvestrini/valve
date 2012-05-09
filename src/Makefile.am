@@ -4,6 +4,8 @@
 # (C) 2012 Francesco Salvestrini <salvestrini AT gmail DOT com>
 #
 
+SUBDIRS = parser
+
 bin_PROGRAMS = valve
 
 valve_SOURCES =					\
@@ -15,3 +17,5 @@ valve_SOURCES =					\
 	bytecode.cc  bytecode.hh		\
 	defs.hh					\
 	valve.cc
+
+valve_LDADD = parser/libptree.a

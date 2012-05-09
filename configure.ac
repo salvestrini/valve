@@ -42,6 +42,9 @@ AC_PROG_CXX
 AC_PROG_CXX_C_O
 AC_PROG_RANLIB
 
+AC_PATH_PROG([FLEX],  [flex],  [/bin/false])
+AC_PATH_PROG([BISON], [bison], [/bin/false])
+
 # Checks
 AC_CHECK_HEADERS([getopt.h],,[
     AC_MSG_ERROR([headee getopt.h seems missing])
@@ -54,6 +57,8 @@ AC_CONFIG_FILES([
     Makefile
 
     src/Makefile
+    src/parser/Makefile
+
     test/Makefile
 ])
 

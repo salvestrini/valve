@@ -1,0 +1,10 @@
+/*.stamp
+
+/lexer.cc
+/lexer.hh
+/parser.cc
+/parser.hh
+/location.hh
+/position.hh
+/ptree.o
+/stack.hh
