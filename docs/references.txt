@@ -1,2 +1,2 @@
 http://svn.python.org/view/python/trunk
-
+http://www.eecs.harvard.edu/hube/software/nci
