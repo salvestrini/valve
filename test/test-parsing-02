@@ -1,0 +1,10 @@
+#
+# (C) 2012 Francesco Salvestrini <salvestrini AT gmail DOT com>
+#
+
+. $testdir/defs || exit 1
+
+cat > test.txt <<EOF
+EOF
+
+$VALVE test.txt

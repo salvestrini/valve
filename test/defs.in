@@ -65,7 +65,7 @@ FLAGS=""
 
 test -n "$DEBUG" && FLAGS="$FLAGS --debug"
 
-test -z "$VALVE" && SVCMGRD="@abs_top_builddir@/src/valve $FLAGS"
+test -z "$VALVE" && VALVE="@abs_top_builddir@/src/valve $FLAGS"
 
 # Always use an absolute srcdir.  Otherwise symlinks made in subdirs
 # of the test dir just won't work.

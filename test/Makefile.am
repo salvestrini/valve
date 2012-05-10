@@ -5,17 +5,16 @@
 #
 
 CLEANFILES =
-EXTRA_DIST =					\
-	test-success				\
-	test-failure
+EXTRA_DIST =
 
-edit = $(SED)					\
-        -e 's|@SHELL[@]|$(SHELL)|g'		\
-        -e 's|@SED[@]|$(SED)|g'			\
-        -e 's|@GREP[@]|$(GREP)|g'		\
-        -e 's|@DIFF[@]|$(DIFF)|g'		\
-        -e 's|@CUT[@]|$(CUT)|g'			\
-        -e 's|@HEAD[@]|$(HEAD)|g'		\
+edit = $(SED)							\
+	-e 's|@abs_top_builddir[@]|$(abs_top_builddir)|g'	\
+        -e 's|@SHELL[@]|$(SHELL)|g'				\
+        -e 's|@SED[@]|$(SED)|g'					\
+        -e 's|@GREP[@]|$(GREP)|g'				\
+        -e 's|@DIFF[@]|$(DIFF)|g'				\
+        -e 's|@CUT[@]|$(CUT)|g'					\
+        -e 's|@HEAD[@]|$(HEAD)|g'				\
         -e 's|@TAIL[@]|$(TAIL)|g'
 
 defs: Makefile
@@ -38,9 +37,13 @@ scripts =					\
 
 TESTS	     =					\
 	test-success				\
+	test-parsing-01				\
+	test-parsing-02				\
 	$(XFAIL_TESTS)
 XFAIL_TESTS  =					\
 	test-failure
+
+EXTRA_DIST += $(TESTS)
 
 all-local: $(scripts)
 
