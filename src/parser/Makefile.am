@@ -14,16 +14,22 @@ EXTRA_DIST =					\
 	lexer.ll				\
 	parser.yy
 
-MOSTLYCLEANFILES =				\
-	parser.hh				\
-	lexer.cc				\
+MOSTLYCLEANFILES =
+
+MOSTLYCLEANFILES +=				\
 	parser.stamp				\
-	stack.hh				\
+	parser.tmp				\
 	parser.cc				\
+	parser.hh				\
+	stack.hh				\
 	position.hh				\
-	lexer.hh				\
-	lexer.stamp				\
 	location.hh
+
+MOSTLYCLEANFILES +=				\
+	lexer.stamp				\
+	lexer.tmp				\
+	lexer.cc				\
+	lexer.hh
 
 FLEX_OPTIONS  = -c++ --batch
  
