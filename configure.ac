@@ -57,7 +57,7 @@ AC_CONFIG_FILES([
     Makefile
 
     src/Makefile
-    src/parser/Makefile
+    src/ptree/Makefile
 
     test/Makefile
 ])

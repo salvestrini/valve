@@ -1,7 +1,7 @@
 /*.stamp
 
-/lexer.cc
-/lexer.hh
+/scanner.cc
+/scanner.hh
 /parser.cc
 /parser.hh
 /location.hh

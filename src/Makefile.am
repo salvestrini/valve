@@ -4,7 +4,7 @@
 # (C) 2012 Francesco Salvestrini <salvestrini AT gmail DOT com>
 #
 
-SUBDIRS = parser
+SUBDIRS = ptree
 
 bin_PROGRAMS = valve
 
@@ -18,4 +18,4 @@ valve_SOURCES =					\
 	defs.hh					\
 	valve.cc
 
-valve_LDADD = parser/libptree.a
+valve_LDADD = ptree/libptree.a

@@ -8,10 +8,10 @@ noinst_LIBRARIES = libptree.a
 
 libptree_a_SOURCES =				\
 	parser.cc				\
-	lexer.cc
+	scanner.cc
 
 EXTRA_DIST =					\
-	lexer.ll				\
+	scanner.ll				\
 	parser.yy
 
 MOSTLYCLEANFILES =
@@ -26,30 +26,30 @@ MOSTLYCLEANFILES +=				\
 	location.hh
 
 MOSTLYCLEANFILES +=				\
-	lexer.stamp				\
-	lexer.tmp				\
-	lexer.cc				\
-	lexer.hh
+	scanner.stamp				\
+	scanner.tmp				\
+	scanner.cc				\
+	scanner.hh
 
 FLEX_OPTIONS  = -c++ --batch
  
-lexer.stamp: $(srcdir)/lexer.ll Makefile
-	rm -f lexer.tmp
-	touch lexer.tmp
+scanner.stamp: $(srcdir)/scanner.ll Makefile
+	rm -f scanner.tmp
+	touch scanner.tmp
 	$(FLEX) $(FLEX_OPTIONS)			\
-		--outfile=lexer.cc		\
-		--header-file=lexer.hh		\
-		$(srcdir)/lexer.ll || {		\
-		rm -f lexer.cc ;		\
-		rm -f lexer.hh ;		\
+		--outfile=scanner.cc		\
+		--header-file=scanner.hh	\
+		$(srcdir)/scanner.ll || {	\
+		rm -f scanner.cc ;		\
+		rm -f scanner.hh ;		\
 		exit 1 ;			\
 	}
-	mv -f lexer.tmp $@
+	mv -f scanner.tmp $@
 
-lexer.cc lexer.hh: lexer.stamp
-	if test -f $@; then :; else		\
-	  rm -f lexer.stamp;			\
-	  $(MAKE) $(AM_MAKEFLAGS) lexer.stamp;	\
+scanner.cc scanner.hh: scanner.stamp
+	if test -f $@; then :; else			\
+	  rm -f scanner.stamp;				\
+	  $(MAKE) $(AM_MAKEFLAGS) scanner.stamp;	\
 	fi
 
 BISON_OPTIONS = -L C++ -d
