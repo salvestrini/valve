@@ -31,12 +31,13 @@ MOSTLYCLEANFILES +=				\
 	scanner.cc				\
 	scanner.hh
 
-FLEX_OPTIONS  = -c++ --batch
+FLEX_OPTIONS = --batch
  
 scanner.stamp: $(srcdir)/scanner.ll Makefile
 	rm -f scanner.tmp
 	touch scanner.tmp
 	$(FLEX) $(FLEX_OPTIONS)			\
+		--c++				\
 		--outfile=scanner.cc		\
 		--header-file=scanner.hh	\
 		$(srcdir)/scanner.ll || {	\
@@ -47,17 +48,19 @@ scanner.stamp: $(srcdir)/scanner.ll Makefile
 	mv -f scanner.tmp $@
 
 scanner.cc scanner.hh: scanner.stamp
-	if test -f $@; then :; else			\
-	  rm -f scanner.stamp;				\
-	  $(MAKE) $(AM_MAKEFLAGS) scanner.stamp;	\
+	if test ! -f $@; then				\
+		rm -f scanner.stamp ;			\
+		$(MAKE) $(AM_MAKEFLAGS) scanner.stamp ;	\
 	fi
 
-BISON_OPTIONS = -L C++ -d
+BISON_OPTIONS =
 
 parser.stamp: $(srcdir)/parser.yy Makefile
 	rm -f parser.tmp
 	touch parser.tmp
 	$(BISON) $(BISON_OPTIONS)		\
+		--defines=parser.hh		\
+		--language=C++			\
 		-o parser.cc			\
 		$(srcdir)/parser.yy || {	\
 		rm -f parser.cc ;		\
@@ -67,7 +70,7 @@ parser.stamp: $(srcdir)/parser.yy Makefile
 	mv -f parser.tmp $@
 
 parser.cc parser.hh: parser.stamp
-	if test -f $@; then :; else		\
-	  rm -f parser.stamp;			\
-	  $(MAKE) $(AM_MAKEFLAGS) parser.stamp;	\
+	if test ! -f $@ ; then				\
+		rm -f parser.stamp ;			\
+		$(MAKE) $(AM_MAKEFLAGS) parser.stamp ;	\
 	fi
