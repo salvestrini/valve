@@ -8,17 +8,14 @@ int yylex(YYSTYPE* yylval_param);
 %}
 
 %%
+
 start :        /* empty */
+
 %%
 
-int
-yylex(YYSTYPE*)
-{
-    return 0;
-}
+int yylex(YYSTYPE*)
+{ return 0; }
 
-void
-yy::parser::error(const yy::parser::location_type&, const std::string& m)
-{
-    return;
-}
+void yy::parser::error(const yy::parser::location_type & l,
+                       const std::string &               m)
+{ return; }
