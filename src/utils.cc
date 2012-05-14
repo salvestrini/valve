@@ -4,9 +4,6 @@
 // (C) 2012 Francesco Salvestrini <salvestrini AT gmail DOT com>
 //
 
-#ifndef VALVE_UTILS_H
-#define VALVE_UTILS_H
-
 #include "config.h"
 
 #include <iostream>
@@ -25,5 +22,3 @@ void bug(const std::string & message)
         std::cerr << message << std::endl;
         bug();
 }
-
-#endif
