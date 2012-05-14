@@ -8,11 +8,13 @@ noinst_LIBRARIES = libptree.a
 
 libptree_a_SOURCES =				\
 	parser.cc				\
-	scanner.cc
+	scanner.cc				\
+	context.cc
 
 EXTRA_DIST =					\
 	scanner.ll				\
-	parser.yy
+	parser.yy				\
+	context.hh
 
 MOSTLYCLEANFILES =
 
@@ -37,7 +39,6 @@ scanner.stamp: $(srcdir)/scanner.ll Makefile
 	rm -f scanner.tmp
 	touch scanner.tmp
 	$(FLEX) $(FLEX_OPTIONS)			\
-		--c++				\
 		--outfile=scanner.cc		\
 		--header-file=scanner.hh	\
 		$(srcdir)/scanner.ll || {	\
