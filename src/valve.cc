@@ -64,7 +64,7 @@ static void hint(const std::string & message)
 
 static void help()
 {
-        std::cout << "Usage: " << PROGRAM_NAME << " [OPTION].. [FILE]..."
+        std::cout << "Usage: " << PROGRAM_NAME << " [OPTION] ... FILE ..."
                   << std::endl;
         std::cout << std::endl;
         std::cout << "  -h, --help       print this help, then exit"

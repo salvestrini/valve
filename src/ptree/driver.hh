@@ -13,20 +13,20 @@
 # include "parser.hh"
 
 // Tell Flex the lexer's prototype ...
-# define YY_DECL                                                \
-        yy::calcxx_parser::token_type                           \
-        yylex (yy::calcxx_parser::semantic_type* yylval,        \
-               yy::calcxx_parser::location_type* yylloc,        \
-               calcxx_driver& driver)
+# define YY_DECL                                        \
+        yy::valve_parser::token_type                    \
+        yylex (yy::valve_parser::semantic_type* yylval, \
+               yy::valve_parser::location_type* yylloc, \
+               valve_driver& driver)
 
 YY_DECL;
 
 // Conducting the whole scanning and parsing of Calc++.
-class calcxx_driver
+class valve_driver
 {
 public:
-        calcxx_driver ();
-        virtual ~calcxx_driver ();
+        valve_driver ();
+        virtual ~valve_driver ();
      
         std::map<std::string, int> variables;
      

@@ -1,16 +1,16 @@
 %skeleton "lalr1.cc"                          /*  -*- C++ -*- */
 %require "2.5"
 %defines
-%define parser_class_name "calcxx_parser"
+%define parser_class_name "valve_parser"
 
 %code requires {
 # include <string>
-class calcxx_driver;
+class valve_driver;
 }
 
 // The parsing context.
-%parse-param { calcxx_driver& driver }
-%lex-param   { calcxx_driver& driver }
+%parse-param { valve_driver & driver }
+%lex-param   { valve_driver & driver }
 
 %locations
 %initial-action
@@ -25,12 +25,12 @@ class calcxx_driver;
 // Symbols.
 %union
 {
-  int          ival;
-  std::string *sval;
+  int           ival;
+  std::string * sval;
 };
 
 %code {
-# include "context.hh"
+# include "driver.hh"
 }
 
 %token        END      0 "end of file"
@@ -41,7 +41,6 @@ class calcxx_driver;
 
 %printer    { debug_stream () << *$$; } "identifier"
 %destructor { delete $$; } "identifier"
-
 %printer    { debug_stream () << $$; } <ival>
 
 %%
@@ -67,8 +66,6 @@ exp: exp '+' exp   { $$ = $1 + $3; }
 %%
 
 void
-yy::calcxx_parser::error (const yy::calcxx_parser::location_type& l,
-                          const std::string& m)
-{
-  driver.error (l, m);
-}
+yy::valve_parser::error(const yy::valve_parser::location_type & l,
+                        const std::string &                     m)
+{ driver.error (l, m); }

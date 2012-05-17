@@ -3,7 +3,8 @@
 # include <cerrno>
 # include <climits>
 # include <string>
-# include "context.hh"
+
+# include "driver.hh"
 # include "parser.hh"
 
 /* Work around an incompatibility in flex (at least versions
@@ -38,10 +39,10 @@ blank [ \t]
 [\n]+      yylloc->lines (yyleng); yylloc->step ();
 
 %{
-  typedef yy::calcxx_parser::token token;
+  typedef yy::valve_parser::token token;
 %}
            /* Convert ints to the actual type of tokens.  */
-[-+*/]     return yy::calcxx_parser::token_type (yytext[0]);
+[-+*/]     return yy::valve_parser::token_type (yytext[0]);
 
 ":="       return token::ASSIGN;
 
@@ -61,7 +62,7 @@ blank [ \t]
 %%
 
 void
-calcxx_driver::scan_begin()
+valve_driver::scan_begin()
 {
   yy_flex_debug = trace_scanning;
   if (file == "-")
@@ -74,5 +75,5 @@ calcxx_driver::scan_begin()
 }
 
 void
-calcxx_driver::scan_end ()
+valve_driver::scan_end()
 { fclose (yyin); }

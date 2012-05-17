@@ -9,12 +9,12 @@ noinst_LIBRARIES = libptree.a
 libptree_a_SOURCES =				\
 	parser.cc				\
 	scanner.cc				\
-	context.cc
+	driver.cc
 
 EXTRA_DIST =					\
 	scanner.ll				\
 	parser.yy				\
-	context.hh
+	driver.hh
 
 MOSTLYCLEANFILES =
 
